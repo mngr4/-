@@ -1,13 +1,11 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <math.h>
 #include <locale.h>
-
 #define EPS 1e-8           // точность для численных процедур
 #define ZERO_TOL 1e-12     // порог для проверки x=0 (там разрыв)
 
 double f_value(double x, int* ok);
 double f_deriv(double x, int* ok);
-
 void print_table(double a, double b, double h);
 void min_max(double a, double b, double h);
 int bisection(double a, double b, double y, double eps, double* root);
@@ -136,9 +134,7 @@ void find_x_for_y(double a, double b, double h, double y, double eps) {
     for (double left = a; left < b; left += h) {
         double right = left + h;
         if (right > b) right = b;
-
         if (crosses_undefined(left, right)) continue;   /* избегаем x=0 */
-
         int ok1 = 0, ok2 = 0;
         double g1 = f_value(left, &ok1) - y;
         double g2 = f_value(right, &ok2) - y;
@@ -161,7 +157,6 @@ void find_x_for_y(double a, double b, double h, double y, double eps) {
 /* ----------------------- MAIN ----------------------- */
 int main(void) {
     setlocale(LC_ALL, "");
-
     while (1) {
         int choice;
         printf("Меню:\n");
